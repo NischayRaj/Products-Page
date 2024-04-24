@@ -1,11 +1,17 @@
+// ProductTable.jsx
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import image from "../assets/img.jpg";
+import '../styles/ProductTable.css'
 
 function ProductTable({ products, onRowClick, categoryFilter, searchTerm }) {
+  // Function to handle row click
+  const handleRowClick = (params) => {
+    onRowClick(params.row.name);
+  };
+
   // Filter products based on the selected category
-  console.log(categoryFilter);
   const filteredProductsByCategory = categoryFilter
     ? products.filter(
         (product) =>
@@ -49,7 +55,7 @@ function ProductTable({ products, onRowClick, categoryFilter, searchTerm }) {
               />
             ),
           },
-          { field: "price", headerName: "Price", width: 180 },
+          { field: "price", headerName: "Price in Rs", width: 180 },
           {
             field: "action",
             headerName: "Action",
@@ -58,7 +64,7 @@ function ProductTable({ products, onRowClick, categoryFilter, searchTerm }) {
               <Link
                 to={`/product/${encodeURIComponent(params.row.name)}`}
                 style={{ textDecoration: "none", textAlign: "center" }}
-                onClick={() => onRowClick(params.row.name)}
+                onClick={() => handleRowClick(params)}
               >
                 View Details
               </Link>

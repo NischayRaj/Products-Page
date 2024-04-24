@@ -1,9 +1,12 @@
 // ProductDetails.jsx
-
 import React, { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { useParams } from "react-router-dom";
+import image from '../assets/img.jpg';
+import '../styles/Product.css'
 
-function ProductDetails({ data, productName }) {
+function ProductDetails({ data }) {
+  const { productName } = useParams(); // Get productName from URL params
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -20,9 +23,9 @@ function ProductDetails({ data, productName }) {
 
   return (
     <div className="product-details-container">
-      <h2>{product.name}</h2>
-      <img src={product.image} alt={product.name} />
-      <p>{product.description}</p>
+      <h2 className="product-name">{product.name}</h2>
+      <img src={image} alt={product.name} className="product-image" />
+      <p className="product">{product.description}</p>
     </div>
   );
 }

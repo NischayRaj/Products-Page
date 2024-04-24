@@ -72,8 +72,9 @@
 }
 
 .heading {
-  color: black;
+  color: gray;
   text-align: center;
+  display: inline-block;
 }
 
 /* Media queries */

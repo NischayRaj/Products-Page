@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -43,7 +44,6 @@ function App() {
     // console.log("Search term:", event.target.value);
   };
 
-
   const handleCategoryFilterChange = (event) => {
     setCategoryFilter(event.target.value);
   };
@@ -77,7 +77,9 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <h1 className="heading">Products Page</h1>
+        <a href="http://localhost:5173" onClick={(e) => e.stopPropagation()}>
+          <h1 className="heading">Products Page</h1>
+        </a>
         <ProductFilter
           searchTerm={searchTerm}
           handleSearchChange={handleSearchChange}
@@ -86,18 +88,18 @@ function App() {
           sortOrder={sortOrder}
           handleSortChange={handleSortChange}
         />
-        <br/>
+        <br />
         <ProductTable
           searchTerm={searchTerm}
           products={uniqueFilteredProducts}
           onRowClick={handleRowClick}
-          categoryFilter={categoryFilter} // Pass the categoryFilter prop
+          categoryFilter={categoryFilter} 
         />
       </div>
       <Routes>
         <Route
           path="/product/:productName"
-          element={<ProductDetails data={uniqueFilteredProducts} />}
+          element={<ProductDetails data={products} />}
         />
       </Routes>
     </Router>
