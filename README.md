@@ -32,6 +32,8 @@ npm run dev
 
 **Backend**
 ```bash
+cd Products-page/server
+npm install
 node server.js
 ```
 
