@@ -6,8 +6,6 @@ function ProductFilter({
   handleSearchChange,
   categoryFilter,
   handleCategoryFilterChange,
-  sortOrder,
-  handleSortChange,
 }) {
   return (
     <div className="filter-container">
@@ -29,21 +27,12 @@ function ProductFilter({
           placeholder="Categories"
         >
           <MenuItem value="">All</MenuItem>
-          <MenuItem value="Whole Wheat">Whole Wheat</MenuItem>
-          <MenuItem value="Chocolate">Chocolate</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl className="filter-dropdown">
-        <InputLabel id="sort-order-label">Sort Order</InputLabel>
-        <Select
-          labelId="sort-order-label"
-          id="sort-order"
-          value={sortOrder}
-          label="Sort Order"
-          onChange={handleSortChange}
-        >
-          <MenuItem value="asc">Ascending</MenuItem>
-          <MenuItem value="desc">Descending</MenuItem>
+          <MenuItem value="Snacks & Branded Foods">
+            Snacks & Branded Foods
+          </MenuItem>
+          <MenuItem value="Bakery, Cakes & Dairy">
+            Bakery, Cakes & Dairy
+          </MenuItem>
         </Select>
       </FormControl>
     </div>

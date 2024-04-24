@@ -1,4 +1,6 @@
 /* App.css */
+
+/* Base styles */
 .container {
   margin: 20px auto;
   padding: 20px;
@@ -8,13 +10,20 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
 .search {
   width: 200px;
-  height: 40px;
-  background-color:#f9f9f9;
+  height: 44px;
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
-  padding:5px;
-  margin:px;
+  border-radius: 4px;
+  padding: 5px;
+  color: black;
 }
 
 .loader-container {
@@ -57,7 +66,52 @@
   white-space: nowrap;
 }
 
-.filter-dropdown{
-  width:150px;
+.filter-dropdown {
+  width: 150px;
   height: 40px;
+}
+
+.heading {
+  color: black;
+  text-align: center;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+  }
+
+  .product-description {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .filter-dropdown {
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .product-description {
+    max-width: 200px;
+  }
 }

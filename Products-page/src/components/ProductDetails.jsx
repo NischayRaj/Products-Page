@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { CircularProgress } from "@mui/material";
-import axios from "axios";
+// ProductDetails.jsx
 
-function ProductDetails({ match }) {
-  const { productName } = match.params;
+import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
+
+function ProductDetails({ data, productName }) {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/products`);
-        const products = response.data.products;
-        const foundProduct = products.find(
-          (prod) => prod.name.toLowerCase() === productName.toLowerCase()
-        );
-        setProduct(foundProduct);
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    };
-    fetchData();
-  }, [productName]);
+    // Filter the product based on the selected product name
+    const foundProduct = data.find(
+      (prod) => prod.name.toLowerCase() === productName.toLowerCase()
+    );
+    setProduct(foundProduct);
+  }, [data, productName]);
 
   if (!product) {
     return <CircularProgress />;
@@ -29,7 +21,7 @@ function ProductDetails({ match }) {
   return (
     <div className="product-details-container">
       <h2>{product.name}</h2>
-      <img src={product.images.front} alt={product.name} />
+      <img src={product.image} alt={product.name} />
       <p>{product.description}</p>
     </div>
   );

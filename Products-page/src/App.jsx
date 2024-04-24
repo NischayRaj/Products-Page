@@ -14,6 +14,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [selectedProductName, setSelectedProductName] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +40,9 @@ function App() {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+    // console.log("Search term:", event.target.value);
   };
+
 
   const handleCategoryFilterChange = (event) => {
     setCategoryFilter(event.target.value);
@@ -49,9 +52,9 @@ function App() {
     setSortOrder(event.target.value);
   };
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleRowClick = (productName) => {
+    setSelectedProductName(productName);
+  };
 
   if (loading) {
     return <CircularProgress />;
@@ -62,7 +65,7 @@ function App() {
   }
 
   const uniqueProductNames = new Set();
-  const uniqueFilteredProducts = filteredProducts.filter((product) => {
+  const uniqueFilteredProducts = products.filter((product) => {
     if (uniqueProductNames.has(product.name.toLowerCase())) {
       return false;
     } else {
@@ -74,6 +77,7 @@ function App() {
   return (
     <Router>
       <div className="container">
+        <h1 className="heading">Products Page</h1>
         <ProductFilter
           searchTerm={searchTerm}
           handleSearchChange={handleSearchChange}
@@ -82,10 +86,19 @@ function App() {
           sortOrder={sortOrder}
           handleSortChange={handleSortChange}
         />
-        <ProductTable products={uniqueFilteredProducts} />
+        <br/>
+        <ProductTable
+          searchTerm={searchTerm}
+          products={uniqueFilteredProducts}
+          onRowClick={handleRowClick}
+          categoryFilter={categoryFilter} // Pass the categoryFilter prop
+        />
       </div>
       <Routes>
-        <Route path="/product/:productName" element={<ProductDetails />} />
+        <Route
+          path="/product/:productName"
+          element={<ProductDetails data={uniqueFilteredProducts} />}
+        />
       </Routes>
     </Router>
   );
