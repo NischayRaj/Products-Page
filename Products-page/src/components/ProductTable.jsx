@@ -3,7 +3,6 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import image from "../assets/img.jpg";
-import '../styles/ProductTable.css'
 
 function ProductTable({ products, onRowClick, categoryFilter, searchTerm }) {
   // Function to handle row click
